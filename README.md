@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# :paw_prints: Infinite paws 
+
+This project has in infinite scroll of Cat images!
+
+### :hammer: Tools
+- Next.js;
+- TypeScript;
+- React Query for handling API calls;
+- Tailwind for styling;
+- Injected google ads;
+
 
 ## Getting Started
 
