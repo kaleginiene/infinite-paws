@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect } from "react";
+import React, { useCallback, useRef, useEffect, memo } from "react";
 import { GalleryCard } from "./components/GalleryCard";
 import { GalleryItem } from "./types";
 import GoogleAd from "../googleAd/GoogleAd";
@@ -11,7 +11,7 @@ interface InfiniteScrollGalleryProps {
   shouldAutoFetch: boolean;
 }
 
-export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
+const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
   fetchData,
   hasNextPage,
   isLoading,
@@ -43,6 +43,8 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
     };
   }, []);
 
+  console.log(galleryCardsList);
+
   return (
     <section className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
       {galleryCardsList.map((card, index) => (
@@ -52,7 +54,7 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
             ref={index === galleryCardsList.length - 1 ? lastElementRef : null}
             isLoading={isLoading}
           />
-          {showAd(index) && index < 13 && (
+          {showAd(index) && index < 10 && (
             <GoogleAd
               adId={`ad-slot-${index}-${card.id}`}
               adUnitPath="/6355419/Travel/Europe"
@@ -64,3 +66,5 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
     </section>
   );
 };
+
+export default memo(InfiniteScrollGallery);

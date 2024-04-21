@@ -18,10 +18,15 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-display: swap;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .container {
+    @apply max-w-full md:max-w-[1268px] md:m-auto px-[16px];
+  }
+
+  .primary-button {
+    @apply block bg-purple-100 text-white px-[8px] py-[4px] rounded-md;
   }
 }

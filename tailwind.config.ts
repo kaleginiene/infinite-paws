@@ -8,7 +8,19 @@ const config: Config = {
     "./features/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        purple: {
+          100: "#9643EB",
+        },
+        gray: {
+          300: "#828282",
+        },
+      },
+      boxShadow: {
+        bottom: "0px 1px 2px 0px rgba(0, 0, 0, 0.05)",
+      },
+    },
   },
   plugins: [],
 };

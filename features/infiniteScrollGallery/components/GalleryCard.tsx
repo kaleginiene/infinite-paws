@@ -18,6 +18,7 @@ export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(
             width={width}
             height={height}
             placeholder="empty"
+            unoptimized={url.endsWith(".gif")}
           />
         </div>
       )}
