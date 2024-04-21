@@ -7,18 +7,17 @@ interface GalleryCardProps extends GalleryItem {
 }
 
 export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(
-  ({ id, url, width, height, isLoading }, ref) => (
+  ({ id, url, width, height }, ref) => (
     <>
       {url && (
         <div ref={ref}>
           <Image
-            className="object-cover w-full h-[500px] border  border-1 border-grey"
+            className="object-cover w-full h-[500px] border border-1 border-grey"
             src={url}
             alt={`Gallery image ${id}`}
             width={width}
             height={height}
             placeholder="empty"
-            loading="lazy"
           />
         </div>
       )}

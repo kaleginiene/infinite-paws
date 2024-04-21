@@ -33,22 +33,24 @@ export default function Home() {
   const galleryCards = data?.pages.flat() || [];
 
   return (
-    <main className="md:max-w-[1200px] m-auto px-[16px] py-[48px] h-full">
-      {isLoading && <p>Loading bunch of cats. Get ready!</p>}
-      <InfiniteScrollGallery
-        fetchData={fetchNextPage}
-        hasNextPage={!!hasNextPage}
-        isLoading={isLoading}
-        galleryCardsList={galleryCards as GalleryItem[]}
-        shouldAutoFetch={shouldAutoFetch}
-      />
-      {!shouldAutoFetch && (
-        <button className="m-auto block my-4" onClick={handleAutoFetchButton}>
-          Show me all the cats you have!
-        </button>
-      )}
-      {isError && <p>Error loading the gallery: {error?.message}</p>}
-      {isFetchingNextPage && <p>Loading more cats...</p>}
-    </main>
+    <>
+      <main className="md:max-w-[1268px] m-auto px-[16px] py-[48px] h-full">
+        {isLoading && <p>Loading bunch of cats. Get ready!</p>}
+        <InfiniteScrollGallery
+          fetchData={fetchNextPage}
+          hasNextPage={!!hasNextPage}
+          isLoading={isLoading}
+          galleryCardsList={galleryCards as GalleryItem[]}
+          shouldAutoFetch={shouldAutoFetch}
+        />
+        {!shouldAutoFetch && (
+          <button className="m-auto block my-4" onClick={handleAutoFetchButton}>
+            Show me all the cats you have!
+          </button>
+        )}
+        {isError && <p>Error loading the gallery: {error?.message}</p>}
+        {isFetchingNextPage && <p>Loading more cats...</p>}
+      </main>
+    </>
   );
 }
