@@ -1,6 +1,6 @@
 # :paw_prints: Infinite paws 
 
-This project has in infinite scroll of Cat images!
+This project has in infinite scroll of Cat images! :cat2:
 
 ### :hammer: Tools
 - Next.js;
