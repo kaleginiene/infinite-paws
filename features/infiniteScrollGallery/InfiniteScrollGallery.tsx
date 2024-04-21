@@ -42,12 +42,13 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
   }, []);
 
   return (
-    <section>
+    <section className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
       {galleryCardsList.map((card, index) => (
         <GalleryCard
           key={`${card.id}_${index}`}
           {...card}
           ref={index === galleryCardsList.length - 1 ? lastElementRef : null}
+          isLoading={isLoading}
         />
       ))}
     </section>

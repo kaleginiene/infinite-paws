@@ -7,8 +7,15 @@ import { GalleryItem } from "@/features/infiniteScrollGallery/types";
 const STOP_AUTOFETCH_PAGE = 5;
 
 export default function Home() {
-  const { data, fetchNextPage, hasNextPage, isLoading, isError, error } =
-    useCatsGalleryQuery();
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isError,
+    error,
+    isFetchingNextPage,
+  } = useCatsGalleryQuery();
   const [shouldAutoFetch, setShouldAutoFetch] = useState(true);
   const currentPage = data?.pages.length;
   const stopFetching: boolean = currentPage === STOP_AUTOFETCH_PAGE;
@@ -26,7 +33,8 @@ export default function Home() {
   const galleryCards = data?.pages.flat() || [];
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="md:max-w-[1200px] m-auto px-[16px] py-[48px] h-full">
+      {isLoading && <p>Loading bunch of cats. Get ready!</p>}
       <InfiniteScrollGallery
         fetchData={fetchNextPage}
         hasNextPage={!!hasNextPage}
@@ -35,12 +43,12 @@ export default function Home() {
         shouldAutoFetch={shouldAutoFetch}
       />
       {!shouldAutoFetch && (
-        <button onClick={handleAutoFetchButton}>
+        <button className="m-auto block my-4" onClick={handleAutoFetchButton}>
           Show me all the cats you have!
         </button>
       )}
       {isError && <p>Error loading the gallery: {error?.message}</p>}
-      {isLoading && <p>Loading more items...</p>}
+      {isFetchingNextPage && <p>Loading more cats...</p>}
     </main>
   );
 }

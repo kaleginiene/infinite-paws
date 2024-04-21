@@ -1,25 +1,28 @@
 import Image from "next/image";
 import React, { forwardRef } from "react";
+import { GalleryItem } from "../types";
 
-interface GalleryCardProps {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
+interface GalleryCardProps extends GalleryItem {
+  isLoading: boolean;
 }
 
 export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(
-  ({ id, url, width, height }, ref) => (
-    <div ref={ref}>
+  ({ id, url, width, height, isLoading }, ref) => (
+    <>
       {url && (
-        <Image
-          src={url}
-          alt={`Gallery image ${id}`}
-          width={width}
-          height={height}
-        />
+        <div ref={ref}>
+          <Image
+            className="object-cover w-full h-[500px] border  border-1 border-grey"
+            src={url}
+            alt={`Gallery image ${id}`}
+            width={width}
+            height={height}
+            placeholder="empty"
+            loading="lazy"
+          />
+        </div>
       )}
-    </div>
+    </>
   )
 );
 
