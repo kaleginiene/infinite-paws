@@ -15,7 +15,7 @@ export const useCatsGalleryQuery = (): UseInfiniteQueryResult<
     queryKey: ["cats"],
     queryFn: ({ pageParam = 0 }: QueryFunctionContext) =>
       getCatsGallery(pageParam as number),
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_, allPages) => {
       return allPages.length - 1 + 1; // Assuming the API pages are 1-indexed
     },
     initialPageParam: 0, // Explicitly set the initial page parameter

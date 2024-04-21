@@ -17,7 +17,6 @@ export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(
           alt={`Gallery image ${id}`}
           width={width}
           height={height}
-          layout="responsive"
         />
       )}
     </div>

@@ -7,6 +7,7 @@ interface InfiniteScrollGalleryProps {
   hasNextPage: boolean;
   isLoading: boolean;
   galleryCardsList: GalleryItem[];
+  shouldAutoFetch: boolean;
 }
 
 export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
@@ -14,20 +15,24 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
   hasNextPage,
   isLoading,
   galleryCardsList,
+  shouldAutoFetch,
 }) => {
   const observer = useRef<IntersectionObserver>();
+
   const lastElementRef = useCallback(
     (node: any) => {
-      if (isLoading) return;
+      if (isLoading || !shouldAutoFetch) return;
       if (observer.current) observer.current.disconnect();
+
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasNextPage) {
+        if (entries[0].isIntersecting && hasNextPage && shouldAutoFetch) {
           fetchData();
         }
       });
+
       if (node) observer.current.observe(node);
     },
-    [fetchData, hasNextPage, isLoading]
+    [fetchData, hasNextPage, isLoading, shouldAutoFetch]
   );
 
   useEffect(() => {
@@ -40,7 +45,7 @@ export const InfiniteScrollGallery: React.FC<InfiniteScrollGalleryProps> = ({
     <section>
       {galleryCardsList.map((card, index) => (
         <GalleryCard
-          key={card.id}
+          key={`${card.id}_${index}`}
           {...card}
           ref={index === galleryCardsList.length - 1 ? lastElementRef : null}
         />
